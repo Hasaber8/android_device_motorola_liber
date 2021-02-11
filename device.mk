@@ -19,8 +19,14 @@
 # product configuration (apps).
 #
 
+LOCAL_PATH := device/motorola/liber
+
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.liber
+
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay/device
 
 # Overlays - override vendor ones
 PRODUCT_PACKAGES += \
@@ -28,3 +34,6 @@ PRODUCT_PACKAGES += \
     FrameworksResTarget \
     DevicesOverlay \
     DevicesAndroidOverlay
+
+ROM_BUILDTYPE := GAPPS
+$(call inherit-product-if-exists, vendor/gapps/config.mk)
